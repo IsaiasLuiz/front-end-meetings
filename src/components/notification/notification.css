@@ -1,0 +1,26 @@
+.notification {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	margin-top: 10px;
+	z-index: 100;
+	width: 768px;
+	height: 70px;
+	color: #fff;
+	word-wrap: break-word;
+}
+
+.hit-notification {
+	background: rgb(56, 202, 56);
+}
+
+.error-notification {
+	background: red;
+}
+
+@media (max-width: 768px) {
+	.notification {
+		min-width: 100%;
+	}
+}

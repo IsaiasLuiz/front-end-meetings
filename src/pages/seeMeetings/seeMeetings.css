@@ -1,0 +1,13 @@
+.see-meeting {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.see-meeting + div {
+	display: flex;
+	flex-wrap: wrap;
+	box-sizing: border-box;
+	justify-content: center;
+	overflow-x: hidden;
+}
