@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../services/API';
+import converter from "../../utils/MeetingConverter";
 import Loanding from '../../components/loanding';
 import Notification from '../../components/notification';
 import './registerMeeting.css';
@@ -40,10 +41,10 @@ export default class RegisterMeeting extends Component {
 	registrerMeeting = () => {
 		this.setState({ loanding: true });
 		let meeting = {
-			meetingTitle: this.state.meetingTitle,
-			meetingDate: this.state.meetingDate,
-			meetingDescription: this.state.meetingDescription,
-			meetingAuthor: this.state.meetingAuthor
+			title: this.state.meetingTitle,
+			date: this.state.meetingDate,
+			description: this.state.meetingDescription,
+			author: this.state.meetingAuthor
 		};
 		API.post('meetings', meeting)
 			.then(() => {
