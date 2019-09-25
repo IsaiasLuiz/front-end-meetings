@@ -5,10 +5,10 @@ export default class MeetingCard extends Component {
 	render() {
 		return (
 			<div className="meeting-card">
-				<p>Titulo: {this.props.data.meetingTitle}</p>
-				<p>Data: {this.props.data.meetingDate}</p>
-				<p>Descrição: {this.props.data.meetingDescription}</p>
-				<p>Autor: {this.props.data.meetingAuthor}</p>
+				<p>Titulo: {this.props.data.title}</p>
+				<p>Data: {this.props.data.date}</p>
+				<p>Descrição: {this.props.data.description}</p>
+				<p>Autor: {this.props.data.author}</p>
 			</div>
 		);
 	}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import API from '../../services/API';
-import converter from "../../utils/MeetingConverter";
 import Loanding from '../../components/loanding';
 import Notification from '../../components/notification';
 import './registerMeeting.css';

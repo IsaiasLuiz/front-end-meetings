@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import API from '../../services/API';
 import MeetingCard from '../../components/meetingCard';
 import Loanding from '../../components/loanding';
 import Notification from '../../components/notification';
-import API from '../../services/API';
 import './seeMeetings.css';
 
 const NO_MEETINGS = 'Sem Meetings Salvas';
