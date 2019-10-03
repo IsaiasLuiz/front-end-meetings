@@ -31,7 +31,7 @@
 .register-meeting input,
 .register-meeting textarea,
 button {
-	min-width: 250px;
+	min-width: 300px;
 	width: 40%;
 	padding: 0px;
 	margin: 0 0 20px 0;
