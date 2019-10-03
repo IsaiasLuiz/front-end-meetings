@@ -7,6 +7,7 @@
 	margin: 10px 10px 10px 10px;
 	box-shadow: 1px 0px 5px 1px rgb(155, 152, 152);
 	cursor: pointer;
+	background: #fff;
 }
 
 .meeting-card h2 {
