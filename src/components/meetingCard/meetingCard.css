@@ -1,15 +1,34 @@
 .meeting-card {
-	border-radius: 10px;
+	border-radius: 5px;
 	display: flex;
-	width: 420px;
-	min-height: 350px;
+	width: 320px;
+	min-height: 250px;
 	flex-direction: column;
-	background: rgba(255, 105, 180, 0.432);
 	margin: 10px 10px 10px 10px;
+	box-shadow: 1px 0px 5px 1px rgb(155, 152, 152);
+	cursor: pointer;
+}
+
+.meeting-card h2 {
+	font-size: 1.2em;
+	font-weight: 900;
+	text-align: center;
+	color: #186481;
+}
+
+.meeting-card h2 p {
+	font-size: 0.6em;
+	margin: 5px;
 }
 
 .meeting-card p {
-	color: #fff;
+	font-size: 1em;
+	color: #186481;
 	margin: 20px 0 20px 10px;
 	word-wrap: break-word;
+	text-align: center;
+}
+
+.meeting-card:hover {
+	box-shadow: 2px 1px 5px rgb(155, 152, 152);
 }
