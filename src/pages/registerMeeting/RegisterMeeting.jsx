@@ -12,6 +12,8 @@ const MEETING_NOT_REGISTERED =
 
 const DATE_INVALID = 'Data não pode ser inferior a hoje!';
 
+const EMPTY_FIELDS = 'Campos vazios não são permitidos!';
+
 export default class RegisterMeeting extends Component {
 	state = {
 		meetingTitle: '',
@@ -29,19 +31,22 @@ export default class RegisterMeeting extends Component {
 	};
 
 	insertDate = value => {
-		const now = moment(Date.now()).format('YYYY/MM/DD');
-		const date = value || event.target.value;
-
-		if (moment(date, 'YYYY-MM-DD').isBefore(now)) {
-			this.setState({
-				registrationAttempt: DATE_INVALID,
-				notification: true,
-				savedMeeting: false
-			});
+		if (!this.validDate(event.target.value)) {
+			this.reportError(DATE_INVALID);
 		} else {
 			this.setState({ registrationAttempt: '', notification: false });
 			this.setState({ meetingDate: event.target.value });
 		}
+	};
+
+	validDate = value => {
+		const now = moment(Date.now()).format('YYYY/MM/DD');
+		const date = value;
+
+		if (moment(date, 'YYYY-MM-DD').isBefore(now) || !date) {
+			return false;
+		}
+		return true;
 	};
 
 	insertDescription = () => {
@@ -52,27 +57,52 @@ export default class RegisterMeeting extends Component {
 		this.setState({ meetingAuthor: event.target.value });
 	};
 
+	reportError = message =>{
+		this.setState({
+			registrationAttempt: message,
+			notification: true,
+			savedMeeting: false,
+			meetingDate: ''
+		});
+	}
+
+	validateFields = () => {
+		if (
+			this.state.meetingTitle &&
+			this.validDate(this.state.meetingDate) &&
+			this.state.meetingDescription &&
+			this.state.meetingAuthor
+		) {
+			return true;
+		}
+		return false;
+	};
+
 	registrerMeeting = () => {
-		this.setState({ loanding: true });
-		let meeting = {
-			title: this.state.meetingTitle,
-			date: this.state.meetingDate,
-			description: this.state.meetingDescription,
-			author: this.state.meetingAuthor
-		};
-		API.post('meetings', meeting)
-			.then(() => {
-				this.setState({ registrationAttempt: MEETING_REGISTERED });
-				this.setState({ savedMeeting: true });
-				this.clearFields();
-			})
-			.catch(() => {
-				this.setState({ registrationAttempt: MEETING_NOT_REGISTERED });
-			})
-			.finally(() => {
-				this.setState({ loanding: false });
-				this.setState({ notification: true });
-			});
+		if(this.validateFields()){
+			this.setState({ loanding: true });
+			let meeting = {
+				title: this.state.meetingTitle,
+				date: this.state.meetingDate,
+				description: this.state.meetingDescription,
+				author: this.state.meetingAuthor
+			};
+			API.post('meetings', meeting)
+				.then(() => {
+					this.setState({ registrationAttempt: MEETING_REGISTERED });
+					this.setState({ savedMeeting: true });
+					this.clearFields();
+				})
+				.catch(() => {
+					this.setState({ registrationAttempt: MEETING_NOT_REGISTERED });
+				})
+				.finally(() => {
+					this.setState({ loanding: false });
+					this.setState({ notification: true });
+				});
+		}else{
+			this.reportError(EMPTY_FIELDS);
+		}
 	};
 
 	clearFields = () => {
