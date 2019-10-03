@@ -9,6 +9,7 @@
 	height: 70px;
 	color: #fff;
 	word-wrap: break-word;
+	text-align: center;
 }
 
 .hit-notification {
@@ -21,6 +22,7 @@
 
 @media (max-width: 768px) {
 	.notification {
-		min-width: 100%;
+		width: 100%;
+		min-width: 300px;
 	}
 }
